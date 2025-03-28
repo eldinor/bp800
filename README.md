@@ -1,4 +1,4 @@
-# Babylon.js 8.0.0 + Vite 6 Typescript Template with Havok Physics
+# Babylon.js 8 + Vite 6 Typescript Template with Havok Physics
 
 ### Dev Environment
 
