@@ -19,8 +19,8 @@ class App {
     this.canvas.id = "renderCanvas";
     document.body.appendChild(this.canvas);
 
-    //  this.init();
-    this.initWebGPU();
+    //  this.init(); // Uncomment to use WebGL2 engine
+    this.initWebGPU(); // Comment not to use WebGPU engine
   }
 
   async init(): Promise<void> {
@@ -111,7 +111,7 @@ class App {
     // Axes
     new AxesViewer();
 
-    // inspector
+    // Inspector and other stuff
     this._bindEvent();
   }
 

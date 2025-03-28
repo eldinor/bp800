@@ -3,6 +3,7 @@ import {
   DefaultRenderingPipeline,
   Engine,
   HemisphericLight,
+  LoadAssetContainerAsync,
   Scene,
   Tools,
   Vector3,
@@ -18,6 +19,7 @@ export default class MainScene {
   constructor(private scene: Scene, private canvas: HTMLCanvasElement, private engine: Engine | WebGPUEngine) {
     this._setCamera(scene);
     this._setLight(scene);
+    //  this._setEnvironment(scene);
     this.loadComponents();
   }
 
@@ -29,7 +31,11 @@ export default class MainScene {
 
   _setLight(scene: Scene): void {
     const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
-    light.intensity = 0.7;
+    light.intensity = 0.5;
+  }
+
+  _setEnvironment(scene: Scene) {
+    scene.createDefaultEnvironment({ createGround: false, createSkybox: false });
   }
 
   _setPipeLine(): void {
@@ -41,5 +47,23 @@ export default class MainScene {
   async loadComponents(): Promise<void> {
     // Load your files in order
     new Ground(this.scene);
+    // Just the example of model loading and animation playing
+    // await this._loadModel();
+  }
+
+  async _loadModel(): Promise<void> {
+    const container = await LoadAssetContainerAsync("model/Xbot.glb", this.scene);
+    container.addAllToScene();
+    console.log(container);
+    const root = container.meshes[0];
+    root.position.z = 3;
+    container.animationGroups.forEach((ag) => {
+      ag.stop();
+    });
+    container.animationGroups[4].play(true);
+    setTimeout(() => {
+      container.animationGroups[4].stop();
+      container.animationGroups[2].play(true);
+    }, 3000);
   }
 }
