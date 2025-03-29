@@ -23,8 +23,8 @@
 - Default Rendering Pipeline with FXAA and MSAA enabled
 - All `console.log` messages are cleared in the production build
 - Easy to disable not needed functions (Havok, Axes Viewer, Pipeline etc)
-
-For the sake of simplicity all core imports are made from `@babylon/core`. One may use more tree-shaking if needed.
+- Tree-shaking to reduce bundle size
+- Inspector's import only for DEV mode to reduce bundle size
 
 Based on old good https://github.com/minibao/babylon-vite
 
