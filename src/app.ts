@@ -1,6 +1,11 @@
-import "@babylonjs/core/Debug/debugLayer";
-import "@babylonjs/inspector";
-import { Engine, Scene, AxesViewer, Vector3, ArcRotateCamera, HavokPlugin, WebGPUEngine } from "@babylonjs/core";
+//import "@babylonjs/core/Debug/debugLayer";
+//import "@babylonjs/inspector";
+import { Engine } from "@babylonjs/core/Engines/engine";
+import { Scene } from "@babylonjs/core/scene";
+import { AxesViewer } from "@babylonjs/core/Debug/axesViewer";
+import { Vector3 } from "@babylonjs/core/Maths/math.vector";
+import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
+import { HavokPlugin } from "@babylonjs/core/Physics/v2/Plugins/havokPlugin";
 import HavokPhysics from "@babylonjs/havok";
 
 import MainScene from "./playground/main-scene";
@@ -80,18 +85,24 @@ class App {
     }
   }
 
-  _bindEvent(): void {
-    // hide/show the Inspector
-    window.addEventListener("keydown", (ev) => {
-      // Shift+Ctrl+Alt+I
-      if (ev.shiftKey && ev.ctrlKey && ev.altKey && ev.keyCode === 73) {
-        if (this.scene.debugLayer.isVisible()) {
-          this.scene.debugLayer.hide();
-        } else {
-          this.scene.debugLayer.show();
+  async _bindEvent(): Promise<void> {
+    // Imports and hide/show the Inspector
+    // Works only in DEV mode to reduce the size of the PRODUCTION build
+    // Comment IF statement to work in both modes
+    if (import.meta.env.DEV) {
+      await Promise.all([import("@babylonjs/core/Debug/debugLayer"), import("@babylonjs/inspector")]);
+
+      window.addEventListener("keydown", (ev) => {
+        // Shift+Ctrl+Alt+I
+        if (ev.shiftKey && ev.ctrlKey && ev.altKey && ev.keyCode === 73) {
+          if (this.scene.debugLayer.isVisible()) {
+            this.scene.debugLayer.hide();
+          } else {
+            this.scene.debugLayer.show();
+          }
         }
-      }
-    });
+      });
+    } // End of IF statement
 
     // resize window
     window.addEventListener("resize", () => {
