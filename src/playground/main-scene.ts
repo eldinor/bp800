@@ -1,16 +1,12 @@
-import {
-  ArcRotateCamera,
-  DefaultRenderingPipeline,
-  Engine,
-  HemisphericLight,
-  LoadAssetContainerAsync,
-  Scene,
-  Tools,
-  Vector3,
-  WebGPUEngine,
-} from "@babylonjs/core";
-import "@babylonjs/loaders";
-
+import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera";
+import { DefaultRenderingPipeline } from "@babylonjs/core/PostProcesses/RenderPipeline/Pipelines/defaultRenderingPipeline";
+import { Engine } from "@babylonjs/core/Engines/engine";
+import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
+import { Scene } from "@babylonjs/core/scene";
+import { Tools } from "@babylonjs/core/Misc/tools";
+import { Vector3 } from "@babylonjs/core/Maths/math.vector";
+import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
+// import { LoadAssetContainerAsync } from "@babylonjs/core/Loading/sceneLoader";
 import { Ground } from "./ground";
 
 export default class MainScene {
@@ -47,23 +43,5 @@ export default class MainScene {
   async loadComponents(): Promise<void> {
     // Load your files in order
     new Ground(this.scene);
-    // Just the example of model loading and animation playing
-    // await this._loadModel();
-  }
-
-  async _loadModel(): Promise<void> {
-    const container = await LoadAssetContainerAsync("model/Xbot.glb", this.scene);
-    container.addAllToScene();
-    console.log(container);
-    const root = container.meshes[0];
-    root.position.z = 3;
-    container.animationGroups.forEach((ag) => {
-      ag.stop();
-    });
-    container.animationGroups[4].play(true);
-    setTimeout(() => {
-      container.animationGroups[4].stop();
-      container.animationGroups[2].play(true);
-    }, 3000);
   }
 }
