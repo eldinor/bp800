@@ -1,7 +1,9 @@
 {
   "name": "vite-babylon-800",
   "author": "Andrei Stepanov <eldinor@gmail.com> (https://babylonpress.org/)",
-  "contributors":["minibao (https://github.com/minibao/babylon-vite)"],
+  "contributors": [
+    "minibao (https://github.com/minibao/babylon-vite)"
+  ],
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -11,20 +13,20 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/node": "^22.13.14",
-    "typescript": "^5.8.2",
+    "@types/node": "^24.7.0",
+    "typescript": "^5.9.3",
     "vite": "^6.2.3",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-glsl": "^1.3.3",
+    "vite-plugin-glsl": "^1.5.4",
     "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
-    "@babylonjs/core": "^8.7.0",
-    "@babylonjs/gui": "^8.7.0",
+    "@babylonjs/core": "^8.31.0",
+    "@babylonjs/gui": "^8.31.0",
     "@babylonjs/havok": "^1.3.10",
-    "@babylonjs/inspector": "^8.7.0",
-    "@babylonjs/loaders": "^8.7.0",
-    "@babylonjs/materials": "^8.7.0",
-    "@babylonjs/post-processes": "^8.7.0"
+    "@babylonjs/inspector": "^8.31.0",
+    "@babylonjs/loaders": "^8.31.0",
+    "@babylonjs/materials": "^8.31.0",
+    "@babylonjs/post-processes": "^8.31.0"
   }
 }
