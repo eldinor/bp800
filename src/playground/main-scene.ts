@@ -6,6 +6,7 @@ import { Scene } from "@babylonjs/core/scene";
 import { Tools } from "@babylonjs/core/Misc/tools";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
+import "@babylonjs/core/Helpers/sceneHelpers";
 // import { LoadAssetContainerAsync } from "@babylonjs/core/Loading/sceneLoader";
 import { Ground } from "./ground";
 
@@ -15,7 +16,7 @@ export default class MainScene {
   constructor(private scene: Scene, private canvas: HTMLCanvasElement, private engine: Engine | WebGPUEngine) {
     this._setCamera(scene);
     this._setLight(scene);
-    //  this._setEnvironment(scene);
+    this._setEnvironment(scene);
     this.loadComponents();
   }
 
