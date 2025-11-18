@@ -9,10 +9,7 @@ import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
 import "@babylonjs/core/Helpers/sceneHelpers";
 // import { LoadAssetContainerAsync } from "@babylonjs/core/Loading/sceneLoader";
 import { Ground } from "./ground";
-import { AdvancedDynamicTexture, Button } from "@babylonjs/gui/2D";
-// WebGPU specific imports
-import "@babylonjs/core/Engines/WebGPU/Extensions/engine.dynamicTexture";
-import "@babylonjs/core/Engines/WebGPU/Extensions/engine.renderTarget";
+import { setUI } from "./gui";
 
 export default class MainScene {
   private camera: ArcRotateCamera;
@@ -48,18 +45,8 @@ export default class MainScene {
   async loadComponents(): Promise<void> {
     // Load your files in order
     new Ground(this.scene);
+    // Load Babylon GUI
+    await setUI(this.scene);
     //
-    const advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI("myUI");
-    const button = Button.CreateSimpleButton("but", "Click Me");
-    button.width = 0.2;
-    button.height = "40px";
-    button.color = "white";
-    button.background = "green";
-    button.verticalAlignment = 0;
-    button.topInPixels = 20;
-    advancedTexture.addControl(button);
-    button.onPointerUpObservable.add(() => {
-      console.log("CLICK!");
-    });
   }
 }
