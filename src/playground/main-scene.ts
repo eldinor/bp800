@@ -9,6 +9,7 @@ import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
 import "@babylonjs/core/Helpers/sceneHelpers";
 // import { LoadAssetContainerAsync } from "@babylonjs/core/Loading/sceneLoader";
 import { Ground } from "./ground";
+import { setUI } from "./gui";
 
 export default class MainScene {
   private camera: ArcRotateCamera;
@@ -44,5 +45,8 @@ export default class MainScene {
   async loadComponents(): Promise<void> {
     // Load your files in order
     new Ground(this.scene);
+    // Load Babylon GUI
+    await setUI(this.scene);
+    //
   }
 }
